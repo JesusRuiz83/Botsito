@@ -9,8 +9,10 @@ export async function all(m, chatUpdate) {
         return
     if (!m.message)
         return
-    
-        
+    let id = m.message.buttonsResponseMessage?.selectedButtonId || m.message.templateButtonReplyMessage?.selectedId || m.message.listResponseMessage?.singleSelectReply?.selectedRowId
+        let text = m.message.buttonsResponseMessage?.selectedDisplayText || m.message.templateButtonReplyMessage?.selectedDisplayText || m.message.listResponseMessage?.title
+        let isIdMessage = false, usedPrefix
+                
     for (let name in global.plugins) {
         let plugin = global.plugins[name]
         if (!plugin)
